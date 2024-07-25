@@ -12,6 +12,9 @@ import {
 } from "lucide-react";
 import { Cursor, useTypewriter } from "react-simple-typewriter";
 import "./globals.css";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import Image from "next/image";
 
 const features = [
   {
@@ -87,6 +90,37 @@ export default function Home() {
                 Dialogues.
               </span>
             </p>
+
+            <p className="mt-6 text-lg leading-8 text-slate-600">
+              Introducing{" "}
+              <span className="font-bold text-fuchsia-600">Chat with PDF.</span>
+              <br />
+              <br />
+              Upload your document, and your chatbot will answer questions,
+              summarise content, and answer all your Qs. Ideal for everyone,{" "}
+              <span className="text-fuchsia-600"> Chat wit PDF</span> turns
+              static documents into {""}
+              <span className="font-bold">dynamic conversations</span>,
+              enhancing productivity 10x fold effortlessly.
+            </p>
+          </div>
+
+          <div className="flex justify-center">
+            <Button asChild className="mt-10">
+              <Link href="/dashboard">Get Started</Link>
+            </Button>
+          </div>
+          </div>
+
+        <div>
+          <div>
+            <Image
+              alt="App Screenshot"
+              src="https://i.imgur.com/VciRSTI.jpeg"
+              width={2432}
+              height={1442}
+              className="mb-[-0%] rounded-xl shadow-2xl ring-1 ring-slate-900/10"
+            />
           </div>
         </div>
       </div>
