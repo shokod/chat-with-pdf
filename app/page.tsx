@@ -74,8 +74,8 @@ export default function Home() {
 
   return (
     <main className="flex-1 overflow-scroll p-2 lg:p-5 bg-gradient-to-bl from-white to-fuchsia-600">
-      <div className="bg-white py-24 sm:py-32 rounded-md drop-shadow-lg">
-        <div className="flex flex-col justify-center mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="bg-white py-24 sm:py-32 rounded-md drop-shadow-xl">
+        <div className="flex flex-col justify-center items-center mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl sm:text-center">
             <h2 className="text-base font-semibold leading-7 text-purple-600">
               Your Interactive Document Buddy
@@ -112,8 +112,8 @@ export default function Home() {
           </div>
           </div>
 
-        <div>
-          <div>
+        <div className="relative overflow-hidden pt-16">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <Image
               alt="App Screenshot"
               src="https://i.imgur.com/VciRSTI.jpeg"
