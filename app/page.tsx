@@ -98,13 +98,13 @@ export default function Home() {
               <br />
               Upload your document, and your chatbot will answer questions,
               summarise content, and answer all your Qs. Ideal for everyone,{" "}
-              <span className="text-fuchsia-600"> Chat wit PDF</span> turns
+              <span className="text-fuchsia-600"> Chat with PDF</span> turns
               static documents into {""}
               <span className="font-bold">dynamic conversations</span>,
               enhancing productivity 10x fold effortlessly.
             </p>
           </div>
-          
+
           <Button asChild className="mt-10">
             <Link href="/dashboard">Get Started</Link>
           </Button>
