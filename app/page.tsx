@@ -104,13 +104,11 @@ export default function Home() {
               enhancing productivity 10x fold effortlessly.
             </p>
           </div>
-
-          <div className="flex justify-center">
-            <Button asChild className="mt-10">
-              <Link href="/dashboard">Get Started</Link>
-            </Button>
-          </div>
-          </div>
+          
+          <Button asChild className="mt-10">
+            <Link href="/dashboard">Get Started</Link>
+          </Button>
+        </div>
 
         <div className="relative overflow-hidden pt-16">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
