@@ -67,7 +67,7 @@ const features = [
 
 export default function Home() {
   const [text] = useTypewriter({
-    words: ["Engage and Convert:"],
+    words: ["Engage and Chat:"],
     loop: false,
     delaySpeed: 2000,
   });
