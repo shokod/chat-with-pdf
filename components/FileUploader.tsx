@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
 import {
   CheckCircleIcon,
@@ -10,16 +10,40 @@ import {
   SaveIcon,
   UploadIcon,
 } from "lucide-react";
+import useUpload from "@/hooks/useUpload";
+import { useRouter } from "next/navigation";
 
 function FileUploader() {
-  const onDrop = useCallback((acceptedFiles: File[]) => {
+  const { progress, status, fileId, handleUpload } = useUpload();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (fileId) {
+      router.push(`/dashboard/files/${fileId}`);
+    }
+  }, [fileId, router]);
+
+  const onDrop = useCallback(async (acceptedFiles: File[]) => {
     // Do something with the accepted files
-    console.log(acceptedFiles);
+    // console.log(acceptedFiles);
+
+    const file = acceptedFiles[0];
+
+    if (file) {
+      await handleUpload(file);
+    } else {
+      // do nothing
+      // toast...
+    }
   }, []);
 
   const { getRootProps, getInputProps, isDragActive, isFocused, isDragAccept } =
     useDropzone({
       onDrop,
+      maxFiles: 1,
+      accept: {
+        "application/pdf": [".pdf"],
+      },
     });
 
   return (
@@ -41,7 +65,7 @@ function FileUploader() {
             </>
           ) : (
             <>
-            <CircleArrowDown className="h-20 w-20 animate-bounce"/>
+              <CircleArrowDown className="h-20 w-20 animate-bounce" />
               <p>
                 Drag &apos;N&apos; Drop some files here, or click to select
                 files
