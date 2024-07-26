@@ -95,7 +95,7 @@ export async function generateEmbeddingsInPineconeVectorStore(docId: string) {
   const namespaceAlreadyExists = await namespaceExists(index, docId);
 
   if (namespaceAlreadyExists) {
-    console.log(`--- Namespace ${docId}  already exists, eusing existing embeddings... ---`);
+    console.log(`--- Namespace ${docId}  already exists, using existing embeddings... ---`);
     
     pineconeVectoreStore = await PineconeStore.fromExistingIndex(embeddings, {
       pineconeIndex: index,
