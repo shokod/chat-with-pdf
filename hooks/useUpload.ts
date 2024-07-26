@@ -68,6 +68,7 @@ function useUpload() {
 
         setStatus(StatusText.Generating);
         // Generate Ai Embeddings.....
+        
 
         setFileId(fileIdToUploadTo);
 

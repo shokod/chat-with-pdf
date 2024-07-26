@@ -6,11 +6,13 @@ import {
   CheckCircleIcon,
   CircleArrowDown,
   HammerIcon,
+  Loader,
+  Loader2,
   RocketIcon,
   SaveIcon,
   UploadIcon,
 } from "lucide-react";
-import useUpload from "@/hooks/useUpload";
+import useUpload, { StatusText } from "@/hooks/useUpload";
 import { useRouter } from "next/navigation";
 
 function FileUploader() {
@@ -37,6 +39,20 @@ function FileUploader() {
     }
   }, []);
 
+  const statusIcons: {
+    [key in StatusText]: JSX.Element;
+  } = {
+    [StatusText.Uploading]: (
+      <RocketIcon className="h-20 w-20 text-fuchsia-600" />
+    ),
+    [StatusText.Uploaded]: (
+      <CheckCircleIcon className="h-20 w-20 text-fuchsia-600" />
+    ),
+    [StatusText.Saving]: <SaveIcon className="h-20 w-20 text-fuchsia-600" />,
+
+    [StatusText.Generating]: <Loader className="h-20 w-20 text-fuchsia-600" />,
+  };
+
   const { getRootProps, getInputProps, isDragActive, isFocused, isDragAccept } =
     useDropzone({
       onDrop,
@@ -46,10 +62,42 @@ function FileUploader() {
       },
     });
 
+  const uploadInProgress = progress != null && progress >= 0 && progress <= 100;
+
   return (
     <div className="flex flex-col gap-4 items-center max-w-7xl mx-auto">
       {/* Loading... */}
-      <div
+
+      {uploadInProgress && (
+        <div className="mt-32 flex flex-col justify-center items-center gap-5">
+          <div
+            className={`radial-progress bg-fuchsia-300 text-white border-fuchsia-600 border-4 ${
+              progress === 100 && "hidden"
+            }`}
+            role="progressbar"
+            style={{
+              //@ts-ignore
+              "--value": progress,
+              "--size": "12rem",
+              "--thickness": "1.3rem",
+            }}
+          >
+            {progress} %
+          </div>
+
+          {/* Render Status Icon */}
+
+          {
+            //@ts-ignore
+            statusIcons[status!]
+          }
+
+          <p className="text-fuchsia-600 animate-pulse">{status as string}</p>
+        </div>
+      )}
+
+      {!uploadInProgress && (
+        <div
         {...getRootProps()}
         className={`p-10 border-2 border-dashed mt-10 w-[90%] border-fuchsia-300 text-fuchsia-700 rounded-lg flex items-center justify-center ${
           isFocused || isDragAccept ? "bg-fuchsia-200" : "bg-fuchsia-100"
@@ -73,7 +121,7 @@ function FileUploader() {
             </>
           )}
         </div>
-      </div>
+      </div>)}
     </div>
   );
 }
