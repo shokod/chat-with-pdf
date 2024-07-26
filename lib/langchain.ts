@@ -17,7 +17,7 @@ import { auth } from "@clerk/nextjs/server";
 // Initialize the Open aI model with API key and model name
 
 const model = new ChatOpenAI({
-  modelName: "gpt-3.5-turbo",
+  modelName: "gpt-3.5",
   apiKey: process.env.OPENAI_API_KEY,
 });
 

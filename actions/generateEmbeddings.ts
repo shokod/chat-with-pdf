@@ -10,7 +10,7 @@ export async function generateEmbeddings(docId: string) {
   // Turn a PDF into embeddings i.e a string of numbers [0.022454535, 0.3455353]
   await generateEmbeddingsInPineconeVectorStore(docId);
 
-  revalidatePath("/dashbaord");
+  revalidatePath("/dashboard");
 
   return { completed: true };
 }

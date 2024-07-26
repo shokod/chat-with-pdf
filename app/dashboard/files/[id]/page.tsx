@@ -14,11 +14,11 @@ async function ChatToFilePage({
   const ref = await adminDb
     .collection("users")
     .doc(userId!)
-    .collection("chats")
+    .collection("files")
     .doc(id)
     .get();
 
-  const url = ref.data()?.downloadURL;
+  const url = ref.data()?.downloadUrl;
 
   return (
     <div className=" grid lg:grid-cols-5 h-full overflow-hidden">
