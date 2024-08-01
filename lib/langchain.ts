@@ -50,6 +50,14 @@ async function fetchMessagesFromDB(docId: string) {
         ? new HumanMessage(doc.data().message)
         : new AIMessage(doc.data().message)
     );
+
+    console.log (
+      `---- fetched last ${chatHistory.length} messages successfully ---`
+    );
+
+    console.log(chatHistory.map((msg) => msg.content.toString()));
+
+    return chatHistory;
 }
 
 export async function generateDocs(docId: string) {
@@ -170,4 +178,16 @@ const generateLangchainCompletion = async (docId: string) => {
 
   // Fetch the chat history from the database
   const chatHistory = await fetchMessagesFromDB(docId);
+
+  // Define a prompt tepmte for generating search queries based on conversation history
+  console.log("--- Defining a prompt template... ---");
+
+  const historyAwarePrompt = ChatPromptTemplate.fromMessages([
+    ...chatHistory, // Insert the actual chat history here
+    ["user", "{input}"],
+    [
+      "user",
+      "Given the above coversation, generate a search query to look uo in order to get information relevant to the conversation",
+    ],
+  ]);
 };
