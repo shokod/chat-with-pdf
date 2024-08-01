@@ -45,7 +45,11 @@ async function fetchMessagesFromDB(docId: string) {
     //.limit(LIMIT)
     .get();
 
-  
+    const chatHistory = chats.docs.map((doc) =>
+      doc.data().role === "human"
+        ? new HumanMessage(doc.data().message)
+        : new AIMessage(doc.data().message)
+    );
 }
 
 export async function generateDocs(docId: string) {
